@@ -29,13 +29,15 @@ registry.register(ExampleLanguagePack)
 #csv_f = csv.reader(f)
 i=0
 
-with open('C:\_WWWork\python\simplex_team_bot\words.csv', encoding='utf-8') as csvfile:
+#with open('C:\_WWWork\_git\telegram-simplex-bot', encoding='utf-8') as csvfile:
+with open('C:/_WWWork/_git/telegram-simplex-bot/words.csv', encoding='utf-8') as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')
     gwords = []
     ewords = []
     for row in readCSV:
-        gword=row[0]
-        eword=row[1]
+        #print (row)
+        gword=row[1]
+        eword=row[2]
         gwords.append(gword)
         ewords.append(eword)
     #print(gwords)
@@ -75,7 +77,8 @@ def translit_it(message):
 
 @bot.message_handler(commands=["word"])
 def german_words(message): 
-   bot.send_message(message.chat.id, gwords[random.randint(0,4)])
+   temp=random.randint(1,1000)
+   bot.send_message(message.chat.id, gwords[temp] + ' - ' + ewords[temp])
 
 if __name__ == '__main__':
      bot.polling(none_stop=True)
