@@ -1,2 +1,6 @@
 # telegram-simplex-bot
-Telegram bot with different useful features on python and so on
+Telegram bot written on python with different useful features:
+1) password generator
+2) transliteration
+3) german words tutor
+
