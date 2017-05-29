@@ -62,23 +62,26 @@ mapping = (u"abcde", u"абцде")
 bot = telebot.TeleBot(config.token)
 
 @bot.message_handler(commands=["pass"])
-def password_generator(message): 
+def password_generator(message):
     psw = ''.join([random.choice(ls) for x in range(8)])
     bot.send_message(message.chat.id, psw)
 
 @bot.message_handler(commands=["longpass"])
-def password_generator(message): 
+def password_generator(message):
     psw = ''.join([random.choice(lps) for x in range(10)])
     bot.send_message(message.chat.id, psw)
 
 @bot.message_handler(commands=["translit"])
-def translit_it(message): 
+def translit_it(message):
    bot.send_message(message.chat.id, translit(message.text[10:],  'example'))
 
 @bot.message_handler(commands=["word"])
-def german_words(message): 
-   temp=random.randint(1,1000)
-   bot.send_message(message.chat.id, gwords[temp] + ' - ' + ewords[temp])
+def german_words(message):
+    starttime=time.time()
+    while True:
+        temp=random.randint(1,1000)
+        bot.send_message(message.chat.id, gwords[temp] + ' - ' + ewords[temp])
+        time.sleep(60.0 - ((time.time() - starttime) % 60.0))
 
 if __name__ == '__main__':
      bot.polling(none_stop=True)
